@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.ArrayList;
 
-public class Domaci1 {
+public class Domaci2 {
 //    Napisati program koji:
 //    ima niz od 5 stringova. Svaki element u nizu je url stranice:
 //    https://www.google.com/
@@ -14,16 +14,17 @@ public class Domaci1 {
 //    https://www.youtube.com/
 //    https://www.ebay.com/
 //    https://www.katalon.com/
-//    kreira testnu infrastukturu
-//    zatim koristeci for petlju otvara svaku stranicu iz niza u pretrazivacu i pritom pravi pauzu od 2 sekunde
-//    izmedju svaka dva ucitanja stranice
-//    Na kraju program ponisava testnu ifrastukturu
+//    zatim koristeci for petlju otvara svaku stranicu iz niza u pretrazivacu prateci sledeca pravila:
+//    za svaku stranicu se kreira nova infrastuktura
+//    ucitava stranica
+//    pravi pauza od 1s
+//    ponistava testna stuktura
 
-    public static void main(String[] args) throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+    public static void main(String[] args) throws InterruptedException{
+
 
         ArrayList<String> urlStranice = new ArrayList<>();
+
         urlStranice.add("https://www.google.com/");
         urlStranice.add("https://www.facebook.com/");
         urlStranice.add("https://www.youtube.com/");
@@ -31,10 +32,11 @@ public class Domaci1 {
         urlStranice.add("https://www.katalon.com/");
 
         for (int i = 0; i < urlStranice.size(); i++) {
-                driver.get(urlStranice.get(i));
-            Thread.sleep(2000);
+            WebDriverManager.chromedriver().setup();
+            WebDriver driver = new ChromeDriver();
+            driver.get(urlStranice.get(i));
+            Thread.sleep(1000);
+            driver.quit();
         }
-
-        driver.quit();
     }
 }
