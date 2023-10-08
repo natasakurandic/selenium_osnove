@@ -16,6 +16,9 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static d02_10_2023.Helper.getHTTPResponseStatusCode;
 
@@ -38,7 +41,7 @@ public class SwagLabsTests {
         driver.manage().deleteAllCookies();
         driver.get(baseURl);
     }
-    @Test
+    @Test (priority = 1, retryAnalyzer = SwagLabsRetry.class)
     public void VerifyErrorIsDisplayedWhenUsernameIsMissing () {
         driver.findElement(By.id("login-button")).click();
         wait
@@ -281,7 +284,76 @@ public class SwagLabsTests {
         Assert.assertEquals(statusTwitter, 200, "Status code for Twitter is not 200");
         Assert.assertEquals(statusLinkedin, 200, "Status code for Linkedin is not 200");
     }
+    @Test
+    public void TestDefaultNameSortA_Z () throws IOException {
+        String username = "standard_user";
+        String password = "secret_sauce";
 
+        driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("login-button")).click();
+
+        Assert.assertEquals(driver.getCurrentUrl(), baseURl + "inventory.html",
+                "Should be redirected to inventory page after login");
+
+        List<WebElement> productElements = driver.findElements(By.className("inventory_item_name"));
+        List<String> productsNames = new ArrayList<>();
+
+        for (int i = 0; i < productElements.size(); i++) {
+            productsNames.add(productElements.get(i).getText());
+        }
+
+            List<String> sortedProductsNames = new ArrayList<>(productsNames);
+            Collections.sort(sortedProductsNames);
+
+    }
+    @Test
+    public void TestInvertNamedSortZ_A () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("login-button")).click();
+
+        Assert.assertEquals(driver.getCurrentUrl(), baseURl + "inventory.html",
+                "Should be redirected to inventory page after login");
+
+        List<WebElement> productElements = driver.findElements(By.className("inventory_item_name"));
+        List<String> productsNames = new ArrayList<>();
+
+        for (int i = 0; i < productElements.size(); i++) {
+            productsNames.add(productElements.get(i).getText());
+        }
+
+        List<String> reverseSortedProductsNames = new ArrayList<>(productsNames);
+        Collections.sort(reverseSortedProductsNames, Collections.reverseOrder());
+
+    }
+    @Test
+    public void TestSortPriceLowHigh () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("login-button")).click();
+
+        Assert.assertEquals(driver.getCurrentUrl(), baseURl + "inventory.html",
+                "Should be redirected to inventory page after login");
+
+        List<WebElement> priceElements = driver.findElements(By.className("inventory_item_price"));
+        List<Double> productPrices = new ArrayList<>();
+
+        for (int i = 0; i < priceElements.size(); i++) {
+            String priceText = priceElements.get(i).getText().replace("$", "");
+            double price = Double.parseDouble(priceText);
+            productPrices.add(price);
+        }
+        List<Double> sortedProductPrices = new ArrayList<>(productPrices);
+        Collections.sort(sortedProductPrices);
+
+    }
     @AfterMethod
     public void afterMethod(ITestResult testResult) throws IOException {
         js.executeScript("window.localStorage.clear();");
