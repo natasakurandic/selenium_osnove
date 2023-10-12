@@ -10,6 +10,13 @@ public class LoginPage extends BasicPage {
     public  LoginPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
+
+    public WebElement getUserNameField () {
+        return  driver.findElement(By.id("user-name"));
+    }
+    public WebElement getPasswordInput() {
+        return driver.findElement(By.id("password"));
+    }
     public String getLoginErrorMessage () {
         return driver.findElement(By.cssSelector("error-message-container h3")).getText();
     }
@@ -22,9 +29,6 @@ public class LoginPage extends BasicPage {
         getUserNameField()
                 .clear();
         getUserNameField().sendKeys(password);
-    }
-    public WebElement getUserNameField () {
-        return  driver.findElement(By.id("user-name"));
     }
     public void clickLoginButton () {
         driver.findElement(By.id("login-button"))

@@ -103,4 +103,57 @@ public class SwagLabsTests extends BasicTest {
                 driver.getCurrentUrl(), baseUrl + "cart.html",
                 "User should be on the cart page!");
     }
+    @Test (priority = 8)
+    public void verifyPageTitleOfCartPage () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+
+        topNavPage.clickOnCartButton();
+
+        Assert.assertEquals(driver.getTitle(), "Swag  Labs",
+                "Title of cart page should be Swag Labs");
+    }
+    @Test (priority = 9)
+    public void verifyHeaderTitleOfCartPage () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+
+        topNavPage.clickOnCartButton();
+
+        topNavPage.titleInHeader();
+    }
+    @Test (priority = 10)
+    public void verifyIfTheHamburgerMenuButtonIsPresented () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+
+        topNavPage.clickOnCartButton();
+
+        topNavPage.hamburgerMenuButtonIsPresented();
+    }
+    @Test (priority = 11)
+    public void verifyIfTheCartIconIsPresented () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+
+        topNavPage.clickOnCartButton();
+
+        topNavPage.cartIconIsPresented();
+    }
 }
