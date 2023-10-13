@@ -235,4 +235,19 @@ public class SwagLabsTests extends BasicTest {
         Assert.assertEquals(topNavPage.getTextFromSubheaderTitle(), "Your Cart",
                 "Sub-header title should be Your Cart");
     }
+    @Test (priority = 18)
+    public void verifyNumberOfMenuOptionInLeftNavigationMenu () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburgerButton();
+        leftNavPage.waitForMenuToBeVisible();
+
+        Assert.assertEquals(leftNavPage.getNumberOfMenuOptions(), 4,
+                "There should be four menu options in left navigation");
+    }
 }
