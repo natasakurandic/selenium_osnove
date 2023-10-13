@@ -20,6 +20,10 @@ public class TopNavPage extends BasicPage{
     public void clickOnCartButton () {
         driver.findElement(By.className("shopping_cart_link")).click();
     }
+    public void clickOnHamburgerButton () {
+        driver.findElement(By.className("react-burger-menu-btn")).click();
+    }
+
     public void titleInHeader () {
         String expectedHeaderTitle = "Swag Labs";
         WebElement headerTitleElement = driver.findElement(By.className("header_label"));
