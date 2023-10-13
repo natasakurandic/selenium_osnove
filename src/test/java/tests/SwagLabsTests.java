@@ -293,4 +293,23 @@ public class SwagLabsTests extends BasicTest {
                 baseUrl + "inventory.html",
                 "Should be redirected to products page after login.");
     }
+    @Test(priority = 20)
+    public void verifyAboutMenuOptionIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburgerButton();
+        leftNavPage.waitForMenuToBeVisible();
+
+        leftNavPage.clickAbout();
+
+        Assert.assertEquals(
+                driver.getCurrentUrl(),
+                "https://saucelabs.com/",
+                "Should be redirected to sauce labs website.");
+    }
 }

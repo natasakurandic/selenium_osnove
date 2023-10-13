@@ -42,6 +42,14 @@ public class LeftNavPage extends BasicPage {
     public WebElement getAllItems(){
         return driver.findElement(By.linkText("All Items"));
     }
-    public void clickAllItems(){getAllItems().click();}
+    public void clickAllItems(){
+        getAllItems().click();
+    }
+    public WebElement getAbout(){
+        return driver.findElement(By.linkText("About"));
+    }
+    public void clickAbout(){
+        getAbout().click();
+    }
 
 }
