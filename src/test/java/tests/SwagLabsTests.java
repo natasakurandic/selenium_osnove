@@ -10,6 +10,10 @@ import pages.InventoryPage;
 import pages.TopNavPage;
 import retry.SwagLabsRetry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class SwagLabsTests extends BasicTest {
 
@@ -249,5 +253,23 @@ public class SwagLabsTests extends BasicTest {
 
         Assert.assertEquals(leftNavPage.getNumberOfMenuOptions(), 4,
                 "There should be four menu options in left navigation");
+    }
+    @Test (priority = 19)
+    public void verifyTheSpellingOfAllOptionsInMenu () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburgerButton();
+        leftNavPage.waitForMenuToBeVisible();
+
+        List<String> correctSpelledMenu = new ArrayList<>(Arrays.asList("All Items", "About", "Logout", "Reset App State"));
+
+        for (int i = 0; i < leftNavPage.getNumberOfMenuOptions(); i++) {
+            Assert.assertEquals(leftNavPage.getTextFromMenuOptions().get(i), correctSpelledMenu.get(i),
+                    leftNavPage.getTextFromMenuOptions().get(i)+ " is not correctly spelled");
     }
 }
