@@ -10,6 +10,13 @@ public class TopNavPage extends BasicPage{
     public TopNavPage (WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
+
+    public WebElement hamburgerButton() {
+        return driver.findElement(By.id("react-burger-menu-btn"));
+    }
+    public WebElement cartButton() {
+        return driver.findElement(By.id("react-burger-menu-btn"));
+    }
     public void clickOnCartButton () {
         driver.findElement(By.className("shopping_cart_link")).click();
     }
@@ -22,13 +29,13 @@ public class TopNavPage extends BasicPage{
     public void hamburgerMenuButtonIsPresented () {
         WebElement hamburgerMenuButton = driver.findElement(By.id("react-burger-menu-btn"));
         assert hamburgerMenuButton.isDisplayed() : "Hamburger menu button is not presented on the page.";
-        hamburgerMenuButton.click();
-
-
     }
     public void cartIconIsPresented () {
         WebElement cartIcon = driver.findElement(By.className("shopping_cart_link"));
         assert cartIcon.isDisplayed() : "Cart icon is not presented on the page.";
         cartIcon.click();
+    }
+    public boolean hamburgerButtonIsEnabled (){
+        return  hamburgerButton().isEnabled();
     }
 }
