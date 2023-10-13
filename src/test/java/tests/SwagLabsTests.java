@@ -194,4 +194,17 @@ public class SwagLabsTests extends BasicTest {
         topNavPage.clickOnHamburgerButton();
         leftNavPage.waitForMenuToBeVisible();
     }
+    @Test (priority = 15)
+    public void verifyIfTheCartIconIsWorking () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "cart.html",
+                "Should be redirected to cart page after click on cart button");
+    }
 }
