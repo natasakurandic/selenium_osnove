@@ -270,6 +270,27 @@ public class SwagLabsTests extends BasicTest {
 
         for (int i = 0; i < leftNavPage.getNumberOfMenuOptions(); i++) {
             Assert.assertEquals(leftNavPage.getTextFromMenuOptions().get(i), correctSpelledMenu.get(i),
-                    leftNavPage.getTextFromMenuOptions().get(i)+ " is not correctly spelled");
+                    leftNavPage.getTextFromMenuOptions().get(i) + " is not correctly spelled");
+        }
+    }
+
+    @Test(priority = 20)
+    public void verifyAllItemsMenuOptionIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburgerButton();
+        leftNavPage.waitForMenuToBeVisible();
+
+        leftNavPage.clickAllItems();
+
+        Assert.assertEquals(
+                driver.getCurrentUrl(),
+                baseUrl + "inventory.html",
+                "Should be redirected to products page after login.");
     }
 }
