@@ -207,4 +207,19 @@ public class SwagLabsTests extends BasicTest {
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "cart.html",
                 "Should be redirected to cart page after click on cart button");
     }
+    @Test (priority = 16)
+    public void verifyNumberOfAddedItemsToCart () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+
+        int numberOfItemsBefore = topNavPage.getNumberOfItemsFromCartBadge();
+        inventoryPage.clickAddToCart();
+        topNavPage.clickOnCartButton();
+        int numberOfItemsAfter = topNavPage.getNumberOfItemsFromCartBadge();
+        Assert.assertEquals(numberOfItemsAfter, numberOfItemsBefore + 1, "Number of items in the cart did not increase");
+    }
 }

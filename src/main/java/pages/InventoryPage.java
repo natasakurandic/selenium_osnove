@@ -18,6 +18,10 @@ public class InventoryPage extends BasicPage {
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack"))
                 .click();
     }
+    public void clickAddToCart () {
+        driver.findElement(By.id("add-to-cart-sauce"))
+                .click();
+    }
     public void removeButtonVisibility () {
         wait
                 .withMessage("Remove button is not visible")
