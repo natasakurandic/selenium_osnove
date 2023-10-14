@@ -645,4 +645,19 @@ public class SwagLabsTests extends BasicTest {
         driver.close();
         driver.switchTo().window(browserTabs.get(0));
     }
+    @Test (priority = 45)
+    public void verifyCopyrightNoticeMessage () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        footerPage.scrollToFooter();
+
+        Assert.assertEquals(footerPage.getTextFromCopyrightElement(),
+                "© 2023 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+                "The copyright text in the footer is not correct");
+    }
 }
