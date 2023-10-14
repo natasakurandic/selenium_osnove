@@ -31,6 +31,9 @@ public class FooterPage extends BasicPage {
     public void clickOnFacebookIcon(){
         getFacebook().click();
     }
+    public void clickOnLinkedinIcon(){
+        getLinkedin().click();
+    }
     public void scrollToFooter(){
         new Actions(driver).scrollToElement(getFooter()).perform();
     }
