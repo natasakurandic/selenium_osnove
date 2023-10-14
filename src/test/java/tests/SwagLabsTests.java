@@ -360,4 +360,18 @@ public class SwagLabsTests extends BasicTest {
         topNavPage.clickOnHamburgerButton();
         leftNavPage.waitXButton();
     }
+    @Test (priority = 25)
+    public void verifyXButtonIsWorkingOnLeftNav () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburgerButton();
+        leftNavPage.waitXButton();
+        leftNavPage.clickXButton();
+        leftNavPage.waitLeftNavMenuDissapear();
+    }
 }
