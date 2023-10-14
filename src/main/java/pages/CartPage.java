@@ -38,6 +38,11 @@ public class CartPage extends BasicPage {
     public String getNameFromAddedItem(){
         return  driver.findElement(By.className("inventory_item_name")).getText();
     }
+    public void waitForItemTitleToBeClickable(){
+        wait
+                .withMessage("Item title is not clickable in the cart")
+                .until(ExpectedConditions.elementToBeClickable(getItemTitleElement()));
+    }
     public void waitForItemDescription(){
         wait
                 .withMessage("Item description is not visible in the cart")
