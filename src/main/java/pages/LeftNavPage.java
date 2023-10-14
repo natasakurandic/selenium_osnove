@@ -28,6 +28,14 @@ public class LeftNavPage extends BasicPage {
     public List<WebElement> getMenuOptions(){
         return driver.findElements(By.cssSelector(".bm-item-list>a"));
     }
+    public WebElement getXButton(){
+        return driver.findElement(By.id("react-burger-cross-btn"));
+    }
+    public void waitXButton(){
+        wait
+                .withMessage("X button is not present")
+                .until(ExpectedConditions.visibilityOf(getXButton()));
+    }
     public int getNumberOfMenuOptions(){
         return getMenuOptions().size();
     }

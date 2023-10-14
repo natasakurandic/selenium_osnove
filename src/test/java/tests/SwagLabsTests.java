@@ -329,7 +329,7 @@ public class SwagLabsTests extends BasicTest {
                 loginPage.doesUsernameInputExist(),
                 "Should be redirected to login page after logout.");
     }
-    @Test (priority = 16)
+    @Test (priority = 23)
     public void verifyResetAppStateMenuOptionIsWorking () {
         String username = "standard_user";
         String password = "secret_sauce";
@@ -340,7 +340,6 @@ public class SwagLabsTests extends BasicTest {
         inventoryPage.clickAddToCart();
         boolean badgeExists = topNavPage.checkIfCartBadgeExists();
 
-
         topNavPage.clickOnCartButton();
         topNavPage.clickOnHamburgerButton();
         leftNavPage.waitForMenuToBeVisible();
@@ -348,5 +347,17 @@ public class SwagLabsTests extends BasicTest {
 
         boolean badgeExistsAfterReset = topNavPage.checkIfCartBadgeExists();
         Assert.assertEquals(badgeExistsAfterReset, !badgeExists, "Reset option is not resetting the app");
+    }
+    @Test (priority = 24)
+    public void verifyXButtonIsPresentOnLeftNav () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburgerButton();
+        leftNavPage.waitXButton();
     }
 }
