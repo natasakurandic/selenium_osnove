@@ -41,6 +41,9 @@ public class CartPage extends BasicPage {
     public void clickOnRemoveButton(){
         getRemoveButton().click();
     }
+    public void clickCheckoutButton(){
+        getCheckoutButton().click();
+    }
 
     public void waitForItemTitle(){
         wait
