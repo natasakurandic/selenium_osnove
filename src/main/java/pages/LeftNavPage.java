@@ -51,5 +51,7 @@ public class LeftNavPage extends BasicPage {
     public void clickAbout(){
         getAbout().click();
     }
+    public WebElement getResetAppState(){return driver.findElement(By.linkText("Reset App State"));}
+    public void clickResetAppState(){getResetAppState().click();}
 
 }

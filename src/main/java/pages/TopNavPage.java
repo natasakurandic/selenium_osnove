@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TopNavPage extends BasicPage {
@@ -14,9 +15,17 @@ public class TopNavPage extends BasicPage {
     public WebElement hamburgerButton() {
         return driver.findElement(By.id("react-burger-menu-btn"));
     }
+    public void waitForHamburgerButton(){
+        wait.withMessage("Hamburger button is not presented")
+                .until(ExpectedConditions.visibilityOf(hamburgerButton()));
+    }
 
     public WebElement cartButton() {
         return driver.findElement(By.id("shopping_cart_container"));
+    }
+    public void waitForCartIcon(){
+        wait.withMessage("Cart icon is not presented")
+                .until(ExpectedConditions.visibilityOf(cartButton()));
     }
 
     public void clickOnCartButton() {
@@ -45,13 +54,13 @@ public class TopNavPage extends BasicPage {
         cartIcon.click();
     }
 
-    public boolean hamburgerButtonIsEnabled() {
-        return hamburgerButton().isEnabled();
-    }
-
-    public boolean cartIconIsEnabled() {
-        return cartButton().isEnabled();
-    }
+//    public boolean hamburgerButtonIsEnabled() {
+//        return hamburgerButton().isEnabled();
+//    }
+//
+//    public boolean cartIconIsEnabled() {
+//        return cartButton().isEnabled();
+//    }
 
     public boolean checkIfCartBadgeExists() {
         return elementExists(By.className("shopping_cart_badge"));
@@ -76,4 +85,5 @@ public class TopNavPage extends BasicPage {
     public String getTextFromSubheaderTitle() {
         return getSubheaderTitle().getText();
     }
+
 }

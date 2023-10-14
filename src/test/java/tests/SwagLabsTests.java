@@ -171,7 +171,7 @@ public class SwagLabsTests extends BasicTest {
 
         topNavPage.clickOnCartButton();
 
-        Assert.assertTrue(topNavPage.hamburgerButtonIsEnabled(), "Hamburger button is not enabled");
+        topNavPage.waitForHamburgerButton();
     }
     @Test (priority = 13)
     public void verifyIfTheCartIconIsPresentedOnCartPage () {
@@ -184,7 +184,7 @@ public class SwagLabsTests extends BasicTest {
 
         topNavPage.clickOnCartButton();
 
-        Assert.assertTrue(topNavPage.cartIconIsEnabled(), "Cart icon is not enabled");
+        topNavPage.waitForCartIcon();
     }
     @Test (priority = 14)
     public void verifyIfTheHamburgerButtonIsWorking () {
@@ -312,7 +312,7 @@ public class SwagLabsTests extends BasicTest {
                 "https://saucelabs.com/",
                 "Should be redirected to sauce labs website.");
     }
-    @Test(priority = 21)
+    @Test(priority = 22)
     public void verifyLogoutMenuOptionIsWorking() {
         String username = "standard_user";
         String password = "secret_sauce";
@@ -328,5 +328,25 @@ public class SwagLabsTests extends BasicTest {
         Assert.assertTrue(
                 loginPage.doesUsernameInputExist(),
                 "Should be redirected to login page after logout.");
+    }
+    @Test (priority = 16)
+    public void verifyResetAppStateMenuOptionIsWorking () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        inventoryPage.clickAddToCart();
+        boolean badgeExists = topNavPage.checkIfCartBadgeExists();
+
+
+        topNavPage.clickOnCartButton();
+        topNavPage.clickOnHamburgerButton();
+        leftNavPage.waitForMenuToBeVisible();
+        leftNavPage.clickResetAppState();
+
+        boolean badgeExistsAfterReset = topNavPage.checkIfCartBadgeExists();
+        Assert.assertEquals(badgeExistsAfterReset, !badgeExists, "Reset option is not resetting the app");
     }
 }
