@@ -46,7 +46,7 @@ public class CartPage extends BasicPage {
     public void waitForItemDescription(){
         wait
                 .withMessage("Item description is not visible in the cart")
-                .until(ExpectedConditions.visibilityOf(getItemDescriptionElement()));
+                .until(ExpectedConditions.visibilityOf(getItemDescriptionElement())).click();
     }
     public void waitForItemPrice(){
         wait

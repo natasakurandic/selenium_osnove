@@ -454,4 +454,19 @@ public class SwagLabsTests extends BasicTest {
         Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
         cartPage.waitForItemTitleToBeClickable();
     }
+    @Test (priority = 32)
+    public void verifyIfTitleOfAddedItemIsWorking () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        inventoryPage.clickAddToCart();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
+        cartPage.waitForItemTitleToBeClickable();
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("inventory-item.html"),"User is not on the item page");
+    }
 }
