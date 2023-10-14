@@ -416,7 +416,7 @@ public class SwagLabsTests extends BasicTest {
         cartPage.waitForItemDescription();
     }
     @Test (priority = 29)
-    public void verifyIfAddedItemPriceIsPresented() {
+    public void verifyIfAddedItemPriceIsPresented () {
         String username = "standard_user";
         String password = "secret_sauce";
 
@@ -427,5 +427,18 @@ public class SwagLabsTests extends BasicTest {
         topNavPage.clickOnCartButton();
         Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
         cartPage.waitForItemPrice();
+    }
+    @Test (priority = 30)
+    public void verifyIfAddedItemQuantityIsPresented () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        inventoryPage.clickAddToCart();
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(cartPage.checkIfAddedItemsExist(), "There are no items in the cart");
+        cartPage.waitForItemQuantity();
     }
 }
