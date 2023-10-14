@@ -522,5 +522,16 @@ public class SwagLabsTests extends BasicTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "inventory.html");
     }
+    @Test (priority = 37)
+    public void verifyIfCheckoutButtonIsVisibleInTheCart () {
+        String username = "standard_user";
+        String password = "secret_sauce";
 
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        inventoryPage.clickAddToCart();
+        topNavPage.clickOnCartButton();
+        cartPage.waitForCheckoutButtonToBeVisible();
+    }
 }
