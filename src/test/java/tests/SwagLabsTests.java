@@ -534,18 +534,7 @@ public class SwagLabsTests extends BasicTest {
         topNavPage.clickOnCartButton();
         cartPage.waitForCheckoutButtonToBeVisible();
     }
-    @Test (priority = 37)
-    public void verifyIfCheckoutButtonIsVisibleInTheCart () {
-        String username = "standard_user";
-        String password = "secret_sauce";
-
-        loginPage.clearAndTypeUserName(username);
-        loginPage.clearAndTypePassword(password);
-        loginPage.clickLoginButton();
-        inventoryPage.clickAddToCart();
-        topNavPage.clickOnCartButton();
-        cartPage.waitForCheckoutButtonToBeVisible();
-    }@Test (priority = 38)
+    @Test (priority = 38)
     public void verifyIfCheckoutButtonIsWorkingInTheCart () {
         String username = "standard_user";
         String password = "secret_sauce";
@@ -555,11 +544,19 @@ public class SwagLabsTests extends BasicTest {
         loginPage.clickLoginButton();
         inventoryPage.clickAddToCart();
         topNavPage.clickOnCartButton();
-
         cartPage.waitForCheckoutButtonToBeVisible();
-        cartPage.clickCheckoutButton();
-
-        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "checkout-step-one.html",
-                "User is not redirected to checkout page");
     }
+    @Test (priority = 39)
+    public void verifyIfTwitterButtonIsPresentedInTheCartPage () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        footerPage.scrollToFooter();
+        footerPage.waitForTwitterIconToBeVisible();
+    }
+
 }

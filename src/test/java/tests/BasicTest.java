@@ -20,6 +20,7 @@ public abstract class BasicTest {
     protected TopNavPage topNavPage;
     protected LeftNavPage leftNavPage;
     protected CartPage cartPage;
+    protected FooterPage footerPage;
 
     @BeforeClass
     public void setup() {
