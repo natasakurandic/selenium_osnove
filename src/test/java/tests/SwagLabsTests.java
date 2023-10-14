@@ -570,4 +570,16 @@ public class SwagLabsTests extends BasicTest {
         footerPage.scrollToFooter();
         footerPage.waitForFacebookIconToBeVisible();
     }
+    @Test (priority = 41)
+    public void verifyIfLinkedinButtonIsPresentedInTheCartPage () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        footerPage.scrollToFooter();
+        footerPage.waitForLinkedinIconToBeVisible();
+    }
 }

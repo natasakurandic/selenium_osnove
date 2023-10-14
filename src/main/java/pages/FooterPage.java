@@ -22,7 +22,9 @@ public class FooterPage extends BasicPage {
     public WebElement getFacebook(){
         return driver.findElement(By.cssSelector(".social_facebook>a"));
     }
-
+    public WebElement getLinkedin(){
+        return driver.findElement(By.cssSelector(".social_linkedin>a"));
+    }
     public void scrollToFooter(){
         new Actions(driver).scrollToElement(getFooter()).perform();
     }
@@ -37,5 +39,9 @@ public class FooterPage extends BasicPage {
                 .withMessage("Facebook icon is not visible in the cart page")
                 .until(ExpectedConditions.visibilityOf(getFacebook()));
     }
-
+    public void waitForLinkedinIconToBeVisible(){
+        wait
+                .withMessage("Linkedin icon is not visible in the cart page")
+                .until(ExpectedConditions.visibilityOf(getLinkedin()));
+    }
 }
