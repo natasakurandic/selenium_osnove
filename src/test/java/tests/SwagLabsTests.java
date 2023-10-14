@@ -481,4 +481,19 @@ public class SwagLabsTests extends BasicTest {
         topNavPage.clickOnCartButton();
         cartPage.waitForRemoveButtonToBeVisible();
     }
+    @Test (priority = 34)
+    public void verifyIfRemoveButtonIsWorkingInTheCart () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        inventoryPage.clickAddToCart();
+        topNavPage.clickOnCartButton();
+        cartPage.clickOnRemoveButton();
+
+        Assert.assertFalse(cartPage.checkIfAddedItemsExist(), "Added item is not removed");
+    }
+
 }

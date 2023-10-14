@@ -31,6 +31,9 @@ public class CartPage extends BasicPage {
     public WebElement getRemoveButton(){
         return driver.findElement(By.xpath("//button[text()='Remove']"));
     }
+    public void clickOnRemoveButton(){
+        getRemoveButton().click();
+    }
 
     public void waitForItemTitle(){
         wait
