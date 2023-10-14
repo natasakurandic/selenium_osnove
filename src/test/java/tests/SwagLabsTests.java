@@ -582,4 +582,25 @@ public class SwagLabsTests extends BasicTest {
         footerPage.scrollToFooter();
         footerPage.waitForLinkedinIconToBeVisible();
     }
+    @Test (priority = 42)
+    public void verifyIfTwitterButtonWorksInTheCartPage () {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUserName(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickLoginButton();
+        topNavPage.clickOnCartButton();
+        footerPage.scrollToFooter();
+        footerPage.waitForTwitterIconToBeVisible();
+        footerPage.clickOnTwitterIcon();
+
+        List<String> browserTabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(browserTabs .get(1));
+        wait
+                .withMessage("User is not redirected to twitter page")
+                .until(ExpectedConditions.urlToBe("https://twitter.com/saucelabs"));
+        driver.close();
+        driver.switchTo().window(browserTabs.get(0));
+    }
 }
