@@ -20,6 +20,10 @@ public class LoginPage extends BasicPage {
     public String getLoginErrorMessage () {
         return driver.findElement(By.cssSelector("error-message-container h3")).getText();
     }
+
+        public boolean doesUsernameInputExist() {
+            return elementExists(By.id("user-name"));
+        }
     public void clearAndTypeUserName (String firstName) {
         getUserNameField()
                 .clear();
